@@ -1,6 +1,6 @@
-import { INITIAL_Z_INDEX, WINDOW_CONFIG } from "#constants";
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
+import { INITIAL_Z_INDEX, WINDOW_CONFIG } from '#constants';
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 const useWindowStore = create(
   immer((set) => ({
@@ -8,8 +8,8 @@ const useWindowStore = create(
     nextZIndex: INITIAL_Z_INDEX + 1,
 
     // function to open a window( dock thing..)
-    openWindow: (windowKey, data = null) =>
-      set((state) => {
+    openWindow: (windowKey: string, data = null) =>
+      set((state: any) => {
         const win = state.windows[windowKey];
         win.isOpen = true;
         win.zIndex = state.nextZIndex;
@@ -17,16 +17,16 @@ const useWindowStore = create(
         state.nextZIndex++;
       }),
 
-    closeWindow: (windowKey) =>
-      set((state) => {
+    closeWindow: (windowKey : string) =>
+      set((state : any) => {
         const win = state.windows[windowKey];
         win.isOpen = false;
         win.zIndex = INITIAL_Z_INDEX;
         win.data = null;
       }),
 
-    focusWindow: (windowKey) =>
-      set((state) => {
+    focusWindow: (windowKey : string) =>
+      set((state : any) => {
         const win = state.windows[windowKey];
         win.zIndex = state.nextZIndex++;
       }),
